@@ -1,0 +1,105 @@
+﻿@model Employee_Application.Models.UserInfo
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@* <div style="padding-top:50px;"></div>
+<div style="padding:50px;">
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-4">
+            <div>
+                @using(Html.BeginForm("LoginUser","Login",FormMethod.Post, new {role = "form"}))
+                {
+                    <div>
+                        @Html.AntiForgeryToken()
+                        <div>
+                            <label>User Name</label><br/>
+                        </div>
+                        <div>
+                            @Html.TextBoxFor(m=> m.UserName, new{@class = "form-control txtbox"})
+                        </div>
+                        <div style="padding-top:20px;"></div>
+                        <div>
+                            <label>Password</label><br />
+                        </div>
+                        <div>
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control txtbox" })
+                        </div>
+                    </div>
+
+                    <div style="padding-left:10%;width:40%">
+                        <div>
+                            <input class="btn btn-primary btn-lg rph-login-button" type="submit" value="Login" />
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div> *@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <environment include="Development">
+        <link href="~/lib/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
+    </environment>
+    <environment exclude="Development">
+        @*<link href="~/lib/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />*@
+
+        <link rel="stylesheet"
+              href="http://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/twitter-bootstrap/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only"
+              asp-fallback-test-property="position"
+              asp-fallback-test-value="absolute"
+              integrity=""
+              crossorigin="anonymous">
+    </environment>
+</head>
+<body>
+    <div class="container">
+        <h4 class="display-4">Log In</h4>
+        <hr />
+        <div class="row">
+            <div class="col-md-4">
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <div>
+                            <label>User Name</label><br />
+                        </div>
+                        <div>
+                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control txtbox" })
+                        </div>
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <div>
+                            <label>Password</label><br />
+                        </div>
+                        <div>
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control txtbox" })
+                        </div>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    </br>
+                    <div class="form-group">
+
+                        <input asp-action="LoginUser" class="btn btn-primary btn-lg rph-login-button" type="submit" value="Login" />
+                       
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-8">
+                <img class="img-fluid" src="~/images/login.png" />
+            </div>
+        </div>
+
+       
+    </div>
+
+</body>
+</html>

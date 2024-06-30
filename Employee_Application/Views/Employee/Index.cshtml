@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Employee_Application.Models.Employee>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .avatar {
+        vertical-align:middle;
+        width:50px;
+        height :50px;
+        border-radius:50%;
+    }
+</style>
+
+<h1>Index</h1>
+
+<p>
+    <form asp-controller="Employee" asp-action="AddEmployee" method="get">
+        <button type="submit" class="btn btn-primary">Create New</button>
+    </form>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageURL)
+            </th>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DOB)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Designation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+
+            <td>
+              
+                    <img src="@item.ImageURL" alt="Employee Image" class="avatar"/>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DOB)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Designation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+               
+                
+
+            <td>
+                    @Html.ActionLink("Edit", "EditEmployee", new { id = item.EmployeeID }) |
+                    @Html.ActionLink("Details", "ViewEmployee", new { id = item.EmployeeID }) |
+                    @Html.ActionLink("Delete", "RemoveEmployee", new { id = item.EmployeeID })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
